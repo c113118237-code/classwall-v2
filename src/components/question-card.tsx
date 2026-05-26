@@ -4,9 +4,11 @@ import { AnimatePresence, motion } from "motion/react";
 import { memo, useEffect, useRef, useState } from "react";
 
 import { AnswerSection } from "@/components/answer-section";
+import { VideoPreview } from "@/components/video-preview";
 import { getAnonId } from "@/lib/anon-id";
 import { addLiked, hasLiked } from "@/lib/liked-store";
 import { addDisliked, hasDisliked } from "@/lib/disliked-store";
+import { extractVideoUrl } from "@/lib/extract-video-url";
 import { supabase } from "@/lib/supabase";
 import { cn } from "@/lib/utils";
 import type { Question } from "@/types/database";
@@ -166,6 +168,13 @@ function QuestionCardImpl({ question }: Props) {
           ) : null}
           {question.content}
         </p>
+
+        {/* 視頻預覽：如果內容中有視頻網址，顯示預覽 */}
+        {extractVideoUrl(question.content) && (
+          <div className="mt-3">
+            <VideoPreview videoInfo={extractVideoUrl(question.content)!} />
+          </div>
+        )}
 
         <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
           <div className="flex items-center gap-3">
