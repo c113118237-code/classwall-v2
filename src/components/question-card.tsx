@@ -97,6 +97,7 @@ function QuestionCardImpl({ question }: Props) {
       initial={{ opacity: 0, y: 16, scale: 0.96 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
       exit={{ opacity: 0, y: -8, scale: 0.96 }}
+      whileHover={{ y: -4, scale: 1.02 }}
       transition={{ type: "spring", stiffness: 280, damping: 26 }}
     >
       {/* 內層 wrapper 承載 ref-based 3D tilt
